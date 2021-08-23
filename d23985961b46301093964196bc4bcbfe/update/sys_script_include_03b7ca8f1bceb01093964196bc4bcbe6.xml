@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_650610_qrman.UIPage_PrintView</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>UIPage_PrintView</name>
+        <script><![CDATA[var UIPage_PrintView = Class.create();
+UIPage_PrintView.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    type: 'UIPage_PrintView',
+	
+	
+	dataForA6: function(table, query) {
+// 		fieldname = fieldname || this.getParameter('sysparm_fieldname');
+		table = table || this.getParameter('sysparm_table');
+		query = query || this.getParameter('sysparm_query');
+		
+		var response = { data: [] };
+		
+		var result = [];
+		var gr = new GlideRecord(table);
+		gr.addEncodedQuery(query);
+		gr.query();
+		while (gr.next()) {
+			
+			var row = {
+				sys_id: gr.getUniqueValue(),
+				table: gr.getTableName(),
+				extra_data: {
+					top: "",
+					bottom: ""
+				},
+				qr_attachment: {
+					sys_id: false,
+					url: false
+				}
+			};
+			
+			// Get QR attachment
+			var gr_attachment = QRMan.GetQRAttachment(gr.getTableName(), gr.getUniqueValue());
+			if (gr_attachment) {
+				row.qr_attachment.sys_id = gr_attachment.getUniqueValue();
+				row.qr_attachment.url = gs.getProperty("glide.servlet.uri").replace(/\/$/, "") + "/sys_attachment.do?sys_id=" + row.qr_attachment.sys_id;
+			}
+			
+			// Additional procedures here for table-specific extra
+			switch (row.table) {
+				case "alm_hardware": {
+					row.extra_data.top = gr.model_category.getDisplayValue();
+					row.extra_data.bottom = gr.serial_number.getDisplayValue();
+					break;
+				}
+				case "x_650610_mptools_shop_product": {
+					row.extra_data.top = gr.model_category.getDisplayValue();
+					
+					if (gr.model.nil())
+						break;
+					
+					var age_group = gr.model.age_group.nil() ? false : gr.model.age_group.getDisplayValue();
+					var color_design = gr.model.color_design.nil() ? false : gr.model.color_design.getDisplayValue();
+					
+					row.extra_data.bottom = (age_group ? "(" + age_group + ") " : "") + color_design;
+					break;
+				}
+			}
+			
+			if (typeof row.extra_data.top == 'string') {
+				row.extra_data.top = row.extra_data.top.substr(0, UIPage_PrintView.MAX_CHARS_TOP_LABEL);
+			}
+			
+			result.push(row);
+		}
+		
+		response.data = result;
+		return JSON.stringify(response, null, 2);
+	}
+	
+	
+});
+
+
+
+
+(function(self) {
+	
+	self.MAX_CHARS_TOP_LABEL = 27;
+	
+})(UIPage_PrintView);]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-23 03:28:23</sys_created_on>
+        <sys_id>03b7ca8f1bceb01093964196bc4bcbe6</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>UIPage_PrintView</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_script_include_03b7ca8f1bceb01093964196bc4bcbe6</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-23 03:48:02</sys_updated_on>
+    </sys_script_include>
+</record_update>

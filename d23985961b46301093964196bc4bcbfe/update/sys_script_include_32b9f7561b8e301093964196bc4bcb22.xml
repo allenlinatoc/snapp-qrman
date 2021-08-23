@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_650610_qrman.QRLog</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>QRLog</name>
+        <script><![CDATA[var QRLog = Class.create();
+QRLog.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    type: 'QRLog'
+});
+
+
+(function(self) {
+	
+	self.TABLE = "x_650610_qrman_qr_code";
+	
+	
+	self.Create = function(data, table, record_id) {
+		var result = {
+			created_new: true,
+			record: false
+		};
+		
+		var gr = self.Get(data);
+		if (gr) {
+			if (String(gr.table) != table && String(gr.document_id) != record_id) {
+				var old_id = gr.getUniqueValue();
+				
+				// Make a copy if this QR Log comes from different record
+				gr.table = table;
+				gr.document_id = record_id;
+				var insert_id = gr.insert();
+				
+				// Copy attachment(s) from old QR log
+				GlideSysAttachment.copy(gr.getTableName(), old_id, gr.getTableName(), insert_id);
+			}
+			
+			result.created_new = false;
+		} else {
+			gr = new GlideRecord(self.TABLE);
+			gr.initialize();
+			gr.table = table;
+			gr.document_id = record_id;
+			gr.value = data;
+			gr.insert();
+		}
+		
+		result.record = gr;
+		
+		// Copy attachment
+		//GlideSysAttachment.copy(log_table, log_id, table, document_id);	
+		return result;
+	};
+	
+	
+	self.Get = function(data) {
+		var checksum = self.Checksum(data);
+		var gr = new GlideRecord(self.TABLE);
+		gr.addQuery("checksum", checksum);
+		gr.query();
+		if (gr.next()) {
+			return gr;
+		}
+		
+		return false;
+	};
+	
+	
+	self.Checksum = function(val) {
+		return new GlideDigest().getMD5Hex(val);
+	};
+	
+	
+})(QRLog);]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 03:42:14</sys_created_on>
+        <sys_id>32b9f7561b8e301093964196bc4bcb22</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>QRLog</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_script_include_32b9f7561b8e301093964196bc4bcb22</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-22 15:20:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

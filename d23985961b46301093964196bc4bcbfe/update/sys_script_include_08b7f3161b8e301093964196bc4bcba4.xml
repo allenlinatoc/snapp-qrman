@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_650610_qrman.QRMan</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>QRMan</name>
+        <script><![CDATA[var QRMan = Class.create();
+QRMan.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    type: 'QRMan',
+	
+	createQRFromFieldValue: function(fieldname, table, record_id) {
+		fieldname = fieldname || this.getParameter('sysparm_fieldname');
+		table = table || this.getParameter('sysparm_table');
+		record_id = record_id || this.getParameter('sysparm_record_id');
+		
+		var response = {
+			success: false,
+			message: "Something went wrong",
+			data: false
+		};
+		
+		if (fieldname && table && record_id) {
+			
+			var gr = new GlideRecord(table);
+			if (gr.get(record_id)) {
+				if (!gr[fieldname]) {
+					response.message = "Field '" + fieldname + "' does not exist in table '" + table + "'.";
+				}
+				else if (gr[fieldname].nil()) {
+					response.message = "Field value of '" + fieldname + "' is empty.";
+				}
+				else {
+					var attachment_id = QRMan.CreateQR(gr[fieldname].getDisplayValue(), table, record_id);
+					if (attachment_id) {
+						response.success = true;
+						response.message = "Success";
+						response.data = {
+							attachment_id: attachment_id,
+							attachment_url: gs.getProperty("glide.servlet.uri").replace(/\/$/, '') + "/sys_attachment.do?sys_id=" + attachment_id
+						};
+					}
+				}
+			}
+			
+		}
+		
+		return JSON.stringify(response, null, 2);
+	},
+	
+});
+
+(function(self) {
+	
+	self.CreateQR = function(data, table, record_id) {
+		var create_result = QRLog.Create(data, table, record_id);
+		var gr_log = create_result.record;
+		if (create_result.created_new) {
+			
+			// Create QR for QR Log record
+			var result = QRCode_API.CreateQRForRecord(data, gr_log.getTableName(), gr_log.getUniqueValue());
+			if (result.success && result.data && result.data.sys_id) {
+				
+				if (!self.RecordHasQRAttachment(table, record_id)) {
+					// Copy QR attachment, from QR Log, to target record
+					GlideSysAttachment.copy(gr_log.getTableName(), gr_log.getUniqueValue(), table, record_id);
+				}
+				// Get latest attachment
+				return self.GetQRAttachment(table, record_id).getUniqueValue();
+				
+			}
+		} else {
+			// Remove any QR attachment from target record
+			//self.ClearQRAttachment(table, record_id);
+
+			if (!self.RecordHasQRAttachment(table, record_id)) {
+				// Copy QR attachment, from QR Log, to target record
+				GlideSysAttachment.copy(gr_log.getTableName(), gr_log.getUniqueValue(), table, record_id);
+			}
+			// Get latest attachment
+			return self.GetQRAttachment(table, record_id).getUniqueValue();
+			//var qr_attachment = self.GetQRAttachment(create_result.record.getTableName(), create_result.record.getUniqueValue());
+			//return qr_attachment ? qr_attachment.getUniqueValue() : false;
+		}
+		
+		
+		return false;
+	};
+	
+	
+	self.ClearQRAttachment = function(table, record_id) {
+		// IMPORTANT: Requires cross-scope access in sys_attachment table to delete from other application
+		//
+		var gr_attachment = new GlideRecord("sys_attachment");
+		gr_attachment.addQuery('file_name', self.Config.GetAttachmentFilename());
+		gr_attachment.addQuery('table_name', table);
+		gr_attachment.addQuery('table_sys_id', record_id);
+		gr_attachment.query();
+		if (gr_attachment.getRowCount() > 0)
+			gr_attachment.deleteMultiple();
+	};
+	
+	
+	self.GetQRAttachment = function(table, record_id) {
+		// Always returns the latest attachment
+		var gr_attachment = new GlideRecord("sys_attachment");
+		gr_attachment.addQuery('file_name', self.Config.GetAttachmentFilename());
+		gr_attachment.addQuery('table_name', table);
+		gr_attachment.addQuery('table_sys_id', record_id);
+		gr_attachment.orderByDesc('sys_created_on');
+		gr_attachment.query();
+		if (gr_attachment.next()) {
+			return gr_attachment;
+		}
+		
+		return false;
+	};
+	
+	
+	self.RecordHasQRAttachment = function(table, record_id) {
+		var gr_attachment = new GlideRecord("sys_attachment");
+		gr_attachment.addQuery('file_name', self.Config.GetAttachmentFilename());
+		gr_attachment.addQuery('table_name', table);
+		gr_attachment.addQuery('table_sys_id', record_id);
+		gr_attachment.query();
+		return gr_attachment.getRowCount() > 0;
+	};
+	
+	
+	self.Config = {
+		GetDimension: function() { return gs.getProperty('x_650610_qrman.default.dimension'); },
+		GetMargin: function() { return gs.getProperty('x_650610_qrman.default.margin'); },
+		GetAttachmentFilename: function() { return gs.getProperty('x_650610_qrman.attachment_filename').replace(/\.png$/i, '') + '.png'; },
+		GetEP: function() { return gs.getProperty('x_650610_qrman.ep'); }
+	};
+	
+	
+})(QRMan);]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 03:30:37</sys_created_on>
+        <sys_id>08b7f3161b8e301093964196bc4bcba4</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>QRMan</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_script_include_08b7f3161b8e301093964196bc4bcba4</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-23 03:20:29</sys_updated_on>
+    </sys_script_include>
+</record_update>

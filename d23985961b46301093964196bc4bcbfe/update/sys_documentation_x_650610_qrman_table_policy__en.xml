@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="" label="Table policy" language="en" table="x_650610_qrman_table_policy">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>Table policy</label>
+            <language>en</language>
+            <name>x_650610_qrman_table_policy</name>
+            <plural>Table policies</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2021-08-20 17:39:26</sys_created_on>
+            <sys_id>c0713d1a1bc6301093964196bc4bcb4e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Table policy</sys_name>
+            <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+            <sys_update_name>sys_documentation_x_650610_qrman_table_policy__en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2021-08-20 17:39:26</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

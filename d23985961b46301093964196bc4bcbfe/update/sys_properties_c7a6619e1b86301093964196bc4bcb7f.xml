@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>The default inner margin (in pixels). (Default: 10)</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_650610_qrman.default.margin</name>
+        <read_roles/>
+        <suffix>default.margin</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-20 16:52:24</sys_created_on>
+        <sys_id>c7a6619e1b86301093964196bc4bcb7f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_650610_qrman.default.margin</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_properties_c7a6619e1b86301093964196bc4bcb7f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-20 16:52:55</sys_updated_on>
+        <type>integer</type>
+        <value>10</value>
+        <write_roles>x_650610_qrman.admin</write_roles>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=c7a6619e1b86301093964196bc4bcb7f"/>
+</record_update>

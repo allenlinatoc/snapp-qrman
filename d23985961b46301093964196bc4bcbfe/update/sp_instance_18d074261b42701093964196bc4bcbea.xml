@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">81907ce21b42701093964196bc4bcb44</sp_column>
+        <sp_widget display_value="QRMan - Mass Generator (Printable)">479078261b42701093964196bc4bcbea</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:35:35</sys_created_on>
+        <sys_id>18d074261b42701093964196bc4bcbea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sp_instance_18d074261b42701093964196bc4bcbea</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:35:35</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=18d074261b42701093964196bc4bcbea"/>
+</record_update>

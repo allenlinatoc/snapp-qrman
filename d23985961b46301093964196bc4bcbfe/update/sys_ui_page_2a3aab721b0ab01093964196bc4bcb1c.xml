@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[(function($) {
+	
+	$(document).ready(function() {
+		
+		$('#generate_qr').on('click', function(e) {
+			e.preventDefault();
+			
+			var $this = $(this);
+			
+			var table = $('input#table').val();
+			var query = $('input#query').val();
+			var fieldname = $('input#fieldname').val();
+			
+			if (!table)
+				alert("Table is required");
+			if (!query)
+				alert("Query is required");
+			if (!fieldname)
+				alert("Field name is required");
+			
+			$this.addClass('disabled');
+			var ga = new GlideAjax('x_650610_qrman.UIPage_Generator');
+			ga.addParam("sysparm_name", "generate");
+			ga.addParam("sysparm_fieldname", fieldname);
+			ga.addParam("sysparm_table", table);
+			ga.addParam("sysparm_query", query);
+			ga.getXMLAnswer(function(answer) {
+				if (!answer) {
+					alert("Error: Something went wrong, please try again.");
+					return;
+				}
+				
+				console.info(JSON.parse(answer));
+				$this.removeClass('disabled');
+				alert('Done! Ready to Print QR!');
+			});
+		});
+		
+		
+		$("button#print_qr").on("click", function(e) {
+			e.preventDefault();
+			
+			var table = $('input#table').val();
+			var query = $('input#query').val();
+			var fieldname = $('input#fieldname').val();
+			
+			window.open("/x_650610_qrman_print-view-a6.do?table=" + encodeURIComponent(table) + "&query=" + encodeURIComponent(query) + "&fieldname=" + encodeURIComponent(fieldname), '_blank');
+		});
+		
+	});
+	
+})(jQuery.noConflict());]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_650610_qrman_generator.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<div class="container">
+		<div class="col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					QRMan Generator
+				</div>
+				<div class="panel-body">
+					<p>Generate QR codes based on filter/query</p>
+					<!--***************************-->
+					<div class="row">
+						<form>
+							<div class="col-xs-12">
+								<span class="h4">
+									<label class="label label-info" for="table">Table</label>
+								</span>
+								<input id="table" type="text" class="form-control" />
+								<br/>
+							</div>
+							<div class="col-xs-12">
+								<span class="h4">
+									<label class="label label-info" for="query">Filter / Query</label>
+								</span>
+								<input id="query" type="text" class="form-control" />
+								<br/>
+							</div>
+							<div class="col-xs-12">
+								<span class="h4">
+									<label class="label label-info" for="fieldname">Use value from what field?</label>
+								</span>
+								<input id="fieldname" type="text" class="form-control" />
+								<br/>
+							</div>
+							<div class="col-xs-12">
+								<button class="btn btn-primary" id="generate_qr">
+									<span class="glyphicon glyphicon-refresh"></span>$[AMP]nbsp;
+									Generate QR
+								</button>
+								$[AMP]nbsp;
+								<button class="btn btn-warning" id="print_qr">
+									<span class="glyphicon glyphicon-new-window"></span>$[AMP]nbsp;
+									Print QR
+								</button>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</j:jelly>]]></html>
+        <name>generator</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-22 15:46:17</sys_created_on>
+        <sys_id>2a3aab721b0ab01093964196bc4bcb1c</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>generator</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_ui_page_2a3aab721b0ab01093964196bc4bcb1c</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-23 03:07:09</sys_updated_on>
+    </sys_ui_page>
+</record_update>

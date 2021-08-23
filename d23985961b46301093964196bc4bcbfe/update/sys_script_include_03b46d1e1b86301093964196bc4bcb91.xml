@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_650610_qrman.QRCode_API</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>QRCode_API</name>
+        <script><![CDATA[var QRCode_API = Class.create();
+QRCode_API.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    type: 'QRCode_API'
+});
+
+
+(function(self) {
+
+    self.CreateQR = function(data, dimension, margin) {
+		
+		var result = {
+			success: false,
+			message: 'Something went wrong',
+			data: false
+		};
+		
+		if (!dimension)
+			dimension = QRMan.Config.GetDimension();
+		if (!margin)
+			margin = QRMan.Config.GetMargin();
+
+        try {
+            var r = new sn_ws.RESTMessageV2('x_650610_qrman.QRMan', 'Default GET');
+            r.setStringParameterNoEscape('data', data);
+            r.setStringParameterNoEscape('margin', margin);
+            r.setStringParameterNoEscape('dimension', dimension);
+			r.setStringParameterNoEscape('endpoint', QRMan.Config.GetEP());
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+			if (httpStatus == '200' || httpStatus == '201') {
+				result.success = true;
+			}
+			result.message = 'Success';
+			result.data = responseBody;
+			
+        } catch (ex) {
+            var message = ex.message;
+        }
+
+		return result;
+    };
+
+    self.CreateQRForRecord = function(data, table, record_id, filename, dimension, margin) {
+		
+		var result = {
+			success: false,
+			message: 'Something went wrong',
+			data: false
+		};
+		
+		if (!dimension)
+			dimension = QRMan.Config.GetDimension();
+		if (!margin)
+			margin = QRMan.Config.GetMargin();
+		if (!filename)
+			filename = QRMan.Config.GetAttachmentFilename();
+		
+		filename = filename.replace(/\.png$/i, '') + '.png';
+		
+		QRMan.ClearQRAttachment(table, record_id);
+
+		var response = false;
+        try {
+            var r = new sn_ws.RESTMessageV2('x_650610_qrman.QRMan', 'Default GET');
+            r.setStringParameterNoEscape('data', data);
+            r.setStringParameterNoEscape('margin', margin);
+            r.setStringParameterNoEscape('dimension', dimension);
+			r.setStringParameterNoEscape('endpoint', QRMan.Config.GetEP());
+			
+			r.saveResponseBodyAsAttachment(table, record_id, filename);
+
+            response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+			if (httpStatus == '200' || httpStatus == '201') {
+				result.success = true;
+			}
+			
+        } catch (ex) {
+			//gs.info("## Exception caught: " + JSON.stringify(ex, null, 2));
+        }
+		finally {
+			if (response) {
+				result.success = true;
+				result.message = 'Success, file is attached to ' + table + ' <' + record_id + '>';
+				result.data = {
+					table: "sys_attachment",
+					sys_id: response.getResponseAttachmentSysid()
+				};
+			}
+		}
+
+		return result;
+    };
+	
+	
+
+})(QRCode_API);]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-20 16:47:03</sys_created_on>
+        <sys_id>03b46d1e1b86301093964196bc4bcb91</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>QRCode_API</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sys_script_include_03b46d1e1b86301093964196bc4bcb91</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-22 15:41:42</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>QRMan Portal Home - Container 1</name>
+        <order>1</order>
+        <sp_page display_value="qrman_index">a2ffece21b42701093964196bc4bcbed</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:32:48</sys_created_on>
+        <sys_id>6f20b4a21b42701093964196bc4bcbb8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QRMan Portal Home - Container 1</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sp_container_6f20b4a21b42701093964196bc4bcbb8</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:32:48</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="QRMan">d23985961b46301093964196bc4bcbfe</application>
+        <file_path/>
+        <instance_id>88cb50dddb04c0903050ac44d49619b1</instance_id>
+        <instance_name>dev93605</instance_name>
+        <name>sp_container_6f20b4a21b42701093964196bc4bcbb8</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>QRMan Portal Home - Container 1</name><order>1</order><sp_page display_value="qrman_index">a2ffece21b42701093964196bc4bcbed</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>allen.linatoc</sys_created_by><sys_created_on>2021-08-21 07:32:48</sys_created_on><sys_id>6f20b4a21b42701093964196bc4bcbb8</sys_id><sys_mod_count>0</sys_mod_count><sys_name>QRMan Portal Home - Container 1</sys_name><sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package><sys_policy/><sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope><sys_update_name>sp_container_6f20b4a21b42701093964196bc4bcbb8</sys_update_name><sys_updated_by>allen.linatoc</sys_updated_by><sys_updated_on>2021-08-21 07:32:48</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>-63063622</payload_hash>
+        <record_name>QRMan Portal Home - Container 1</record_name>
+        <reverted_from/>
+        <source>c81597921bca301093964196bc4bcb21</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:32:48</sys_created_on>
+        <sys_id>ef20f0261b42701093964196bc4bcb1a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b67a060970000001</sys_recorded_at>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:32:48</sys_updated_on>
+        <type>Container</type>
+        <update_guid>2b20f0265e4270106d76a6de89f8121a</update_guid>
+        <update_guid_history>2b20f0265e4270106d76a6de89f8121a:-63063622</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="QRMan Portal Home - Container 1">bb5074261b42701093964196bc4bcbe3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:33:38</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>68d7cbe0dfb8419eb50b3577d36c3544</sys_id>
+        <sys_metadata>6f20b4a21b42701093964196bc4bcbb8</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QRMan Portal Home - Container 1</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_scope_delete display_value="">4ff7d1d9815c44f69c999c561096d0a4</sys_scope_delete>
+        <sys_update_name>sp_container_6f20b4a21b42701093964196bc4bcbb8</sys_update_name>
+        <sys_update_version display_value="sp_container_6f20b4a21b42701093964196bc4bcbb8">ef20f0261b42701093964196bc4bcb1a</sys_update_version>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:33:38</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

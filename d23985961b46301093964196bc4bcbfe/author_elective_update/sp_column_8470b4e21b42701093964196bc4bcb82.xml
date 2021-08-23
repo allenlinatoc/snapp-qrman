@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>2</order>
+        <size>9</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">0870b4e21b42701093964196bc4bcb7e</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:33:56</sys_created_on>
+        <sys_id>8470b4e21b42701093964196bc4bcb82</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>2</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_update_name>sp_column_8470b4e21b42701093964196bc4bcb82</sys_update_name>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:33:56</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="QRMan">d23985961b46301093964196bc4bcbfe</application>
+        <file_path/>
+        <instance_id>88cb50dddb04c0903050ac44d49619b1</instance_id>
+        <instance_name>dev93605</instance_name>
+        <name>sp_column_8470b4e21b42701093964196bc4bcb82</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>2</order><size>9</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">0870b4e21b42701093964196bc4bcb7e</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>allen.linatoc</sys_created_by><sys_created_on>2021-08-21 07:33:56</sys_created_on><sys_id>8470b4e21b42701093964196bc4bcb82</sys_id><sys_mod_count>0</sys_mod_count><sys_name>2</sys_name><sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package><sys_policy/><sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope><sys_update_name>sp_column_8470b4e21b42701093964196bc4bcb82</sys_update_name><sys_updated_by>allen.linatoc</sys_updated_by><sys_updated_on>2021-08-21 07:33:56</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>1499483889</payload_hash>
+        <record_name>2</record_name>
+        <reverted_from/>
+        <source>c81597921bca301093964196bc4bcb21</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:33:56</sys_created_on>
+        <sys_id>8c70b4e21b42701093964196bc4bcb83</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b67a169230000001</sys_recorded_at>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:33:56</sys_updated_on>
+        <type>Column</type>
+        <update_guid>c470b4e29942701001692b094192f583</update_guid>
+        <update_guid_history>c470b4e29942701001692b094192f583:1499483889</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="2">d89038261b42701093964196bc4bcbc6</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>allen.linatoc</sys_created_by>
+        <sys_created_on>2021-08-21 07:34:30</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>30a24702f72a4ea089e5bb02b5b23100</sys_id>
+        <sys_metadata>8470b4e21b42701093964196bc4bcb82</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>2</sys_name>
+        <sys_package display_value="QRMan" source="x_650610_qrman">d23985961b46301093964196bc4bcbfe</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="QRMan">d23985961b46301093964196bc4bcbfe</sys_scope>
+        <sys_scope_delete display_value="">4ff7d1d9815c44f69c999c561096d0a4</sys_scope_delete>
+        <sys_update_name>sp_column_8470b4e21b42701093964196bc4bcb82</sys_update_name>
+        <sys_update_version display_value="sp_column_8470b4e21b42701093964196bc4bcb82">8c70b4e21b42701093964196bc4bcb83</sys_update_version>
+        <sys_updated_by>allen.linatoc</sys_updated_by>
+        <sys_updated_on>2021-08-21 07:34:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
